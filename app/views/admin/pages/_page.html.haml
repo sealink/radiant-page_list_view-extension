@@ -4,15 +4,15 @@
     - when 'title'
       %td.name{:title => page.title, :style=>"white-space:nowrap"}
         = image('page', :alt => '')
-        = link_to nicify(att,page.send(att)), edit_admin_page_url(page)
+        = link_to page.title, edit_admin_page_url(page)
     - when 'parent_title'
       - unless page.parent.blank?
         %td.name{:title => page.parent.title, :style => "font-size: 90%;white-space:nowrap"}
           = image('page', :alt => '', :height => '20px')
-          = link_to nicify(att,page.send(att)), edit_admin_page_url(page.parent)
+          = link_to page.parent.title, edit_admin_page_url(page.parent)
       - else
         %td.status{:title => "No parent", :style => "font-size: 90%;padding-left:30px"}= "(none)"
     - when 'slug'
-      %td.status{:title => page.url}= nicify(att,page.send(att))
+      %td.status{:title => page.url}= page.slug
     - else
-      %td.status{:title => page.send(att)}= nicify(att,page.send(att))
+      %td.status{:title => page.send(att)}= page.send(att)
